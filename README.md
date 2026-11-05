@@ -33,7 +33,7 @@ Sebelum menjalankan aplikasi, pastikan perangkat Anda sudah terpasang:
 ## Cara Instalasi
 
 1. Clone repository ini atau ekstrak file proyek ke direktori lokal Anda.
-git clone https://github.com/username-anda/taskflow.git
+git clone https://github.com/rifanafandi12/taskflow.git
 cd taskflow
 
 
