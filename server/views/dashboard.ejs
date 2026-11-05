@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #FAFAF9;
+      color: #1C1917;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+    .wrap { max-width: 960px; margin: 0 auto; }
+    h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    .sub { color: #78716C; margin-bottom: 2rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .stat {
+      background: #fff;
+      border: 1px solid #E7E5E4;
+      border-radius: 8px;
+      padding: 1.25rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .stat:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(28,25,23,0.06); }
+    .stat .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #A8A29E; margin-bottom: 0.5rem; }
+    .stat .value { font-size: 2.25rem; font-weight: 700; letter-spacing: -0.04em; }
+    .stat.done .value { color: #059669; }
+    .stat.progress .value { color: #D97706; }
+    h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+    .recent { background: #fff; border: 1px solid #E7E5E4; border-radius: 8px; overflow: hidden; }
+    .recent-item { padding: 1rem 1.25rem; border-bottom: 1px solid #F5F5F4; display: flex; justify-content: space-between; align-items: center; }
+    .recent-item:last-child { border-bottom: none; }
+    .badge { font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 999px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .badge.todo { background: #F5F5F4; color: #57534E; }
+    .badge.in_progress { background: #FEF3C7; color: #92400E; }
+    .badge.done { background: #D1FAE5; color: #065F46; }
+    .back { display: inline-block; margin-top: 2rem; color: #2563EB; text-decoration: none; font-weight: 600; }
+    .back:hover { text-decoration: underline; }
+    @media (max-width: 768px) { body { padding: 1rem; } h1 { font-size: 1.5rem; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Dashboard</h1>
+    <p class="sub">Ringkasan aktivitas TaskFlow kamu.</p>
+
+    <div class="grid">
+      <div class="stat"><div class="label">Total Tugas</div><div class="value"><%= total %></div></div>
+      <div class="stat progress"><div class="label">Sedang Dikerjakan</div><div class="value"><%= inProgress %></div></div>
+      <div class="stat done"><div class="label">Selesai</div><div class="value"><%= done %></div></div>
+    </div>
+
+    <h2>Tugas Terbaru</h2>
+    <div class="recent">
+      <% if (recent.length === 0) { %>
+        <div class="recent-item"><span style="color:#A8A29E">Belum ada tugas.</span></div>
+      <% } %>
+      <% recent.forEach(t => { %>
+        <div class="recent-item">
+          <span><%= t.title %></span>
+          <span class="badge <%= t.status %>"><%= t.status.replace('_',' ') %></span>
+        </div>
+      <% }) %>
+    </div>
+
+    <a href="/" class="back">← Kembali ke Aplikasi</a>
+  </div>
+</body>
+</html>

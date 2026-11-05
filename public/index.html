@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Animated gradient mesh background -->
+  <div class="bg-mesh" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <div class="app">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-mark">TF</div>
+        <span class="brand-name">TaskFlow</span>
+      </div>
+      <a href="/dashboard" class="btn btn-ghost">Dashboard →</a>
+    </header>
+
+    <!-- Toolbar -->
+    <section class="toolbar">
+      <form id="task-form" class="task-form" autocomplete="off">
+        <input type="text" id="title" name="title" placeholder="Apa yang ingin kamu kerjakan?" required maxlength="255">
+        <input type="text" id="description" name="description" placeholder="Deskripsi singkat (opsional)" maxlength="500">
+        <select id="status" name="status">
+          <option value="todo">To Do</option>
+          <option value="in_progress">In Progress</option>
+          <option value="done">Done</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Tambah</button>
+      </form>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Cari tugas...">
+      </div>
+    </section>
+
+    <!-- List -->
+    <main class="list-wrap">
+      <div id="list" class="task-list"></div>
+      <div id="empty" class="empty-state" hidden>
+        <p>Belum ada tugas. Mulai dengan menambahkan satu di atas.</p>
+      </div>
+      <div id="load-more-wrap" class="load-more-wrap" hidden>
+        <button id="load-more" class="btn btn-outline">Muat Lebih Banyak</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Edit Modal -->
+  <div id="edit-modal" class="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel">
+      <h2>Edit Tugas</h2>
+      <form id="edit-form">
+        <input type="hidden" id="edit-id">
+        <label>Judul<input type="text" id="edit-title" required maxlength="255"></label>
+        <label>Deskripsi<input type="text" id="edit-description" maxlength="500"></label>
+        <label>Status
+          <select id="edit-status">
+            <option value="todo">To Do</option>
+            <option value="in_progress">In Progress</option>
+            <option value="done">Done</option>
+          </select>
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" data-close>Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
