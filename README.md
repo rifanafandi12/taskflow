@@ -80,6 +80,7 @@ npm start
 - Halaman dashboard (server-side): http://localhost:3000/dashboard
 
 ## Struktur Proyek
+```javascript
 taskflow/
 ├── server/
 │ ├── index.js # Entry point Express + Socket.io
